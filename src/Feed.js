@@ -1,6 +1,5 @@
 import React from 'react'
 import Post from './Post'
-import NewPost from './NewPost'
 const Feed = ({ post,deletePost }) => {
     return (
         <>

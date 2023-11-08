@@ -4,15 +4,12 @@ import Header from './Header';
 import NewPost from './NewPost';
 import Missing from './Missing';
 import Footer from './Footer';
-import PostPage from './PostPage';
 import Home from './Home';
 import Nav from './Nav';
 import About from './About';
-import Post from './Post';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 import PostLayout from './PostLayout';
 import { useEffect, useState } from 'react';
-import Feed from './Feed';
 import Api from "./Api/post"
 
 
@@ -23,8 +20,13 @@ function App() {
 
   useEffect((()=>{
     const fetchPost= async()=>{
+      try{
       const response=await Api.get("/post");
       setPost(response.data);
+      }
+      catch{
+        console.log(console.error());
+      }
     }
     fetchPost();
 
@@ -40,7 +42,7 @@ function App() {
 
 const deletePost=async(id)=>{
    await Api.delete(`post/${id}`)
-  const posts= post.filter((item)=>item.id!=id)
+  const posts= post.filter((item)=>item.id!==id)
   setPost(posts);
     
 
